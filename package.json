@@ -1,0 +1,25 @@
+{
+  "name": "secure-random",
+  "version": "0.0.1",
+  "description": "lib for generation secure random int or string",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntonOshurek/secure-random.git"
+  },
+  "keywords": [
+    "secure",
+    "random",
+    "int",
+    "string"
+  ],
+  "author": "Anton Oshurek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntonOshurek/secure-random/issues"
+  },
+  "homepage": "https://github.com/AntonOshurek/secure-random#readme"
+}
