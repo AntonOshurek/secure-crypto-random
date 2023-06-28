@@ -32,43 +32,81 @@ const getRandomChar = ({ charCase }) => {
 	};
 };
 
-const getPassword = ({passLength, uppercase, lowercase, numbers, symbols}) => {
-  let availableChars = "";
-  if (uppercase) availableChars += uppercaseChars;
-  if (lowercase) availableChars += lowercaseChars;
-  if (numbers) availableChars += numberChars;
-  if (symbols) availableChars += symbolChars;
+const createWordsArrayFromString = (string) => {
+	let words = [];
+	if(string.length > 0) {
+		words = string.trim().split(/\s+/);
 
-	let password = "";
-  for (let i = 0; i < passLength; i++) {
-    const shuffledChars = shuffleString(availableChars);
-    const randomIndex = getRandomIndex(shuffledChars.length);
-    password += shuffledChars[randomIndex];
-  };
+		for (let i = 0; i < words.length; i++) {
+			words[i] = words[i].replace(/\s/g, '');
+		};
+	};
+	return words;
+};
 
-  return password;
+const getPassword = ({passLength, uppercase, lowercase, numbers, symbols, userString}) => {
+	let availableChars = "";
+	if (uppercase) availableChars += uppercaseChars;
+	if (lowercase) availableChars += lowercaseChars;
+	if (numbers) availableChars += numberChars;
+	if (symbols) availableChars += symbolChars;
+
+	const fullPassLength = userString ? passLength - userString.length : passLength;
+
+	if(Math.sign(fullPassLength) === -1 || 0) {
+		throw new Error('pass length don\'t be a negative or zero');
+	};
+
+	const passSymbolsArray = [];
+
+	for (let i = 0; i < fullPassLength; i++) {
+		const shuffledChars = shuffleString(availableChars);
+		const randomIndex = getRandomIndex(shuffledChars.length);
+
+		passSymbolsArray.push(shuffledChars[randomIndex]);
+	};
+
+	if(userString.length > 0) {
+		const userWords = createWordsArrayFromString(userString);
+		const userWordsCount = userWords.length;
+		const indexForUserWord = [];
+
+		for(let i = 0; i < userWordsCount; i++) {
+			indexForUserWord.push(getRandomIndex(fullPassLength));
+		};
+
+		for(let i = 0; i < indexForUserWord.length; i++) {
+			const indexToInsert = indexForUserWord[i];
+			const wordToInsert = userWords[i];
+
+			passSymbolsArray.splice(indexToInsert, 0, wordToInsert);
+		};
+	};
+
+	const password = passSymbolsArray.join('');
+	return password;
 };
 
 function shuffleString(str) {
-  const array = str.split("");
+	const array = str.split(' ');
 
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  };
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	};
 
-  return array.join("");
+	return array.join("");
 };
 
 const generatePasswordParams = {
 	passLength: 20,
-	uppercase: true,
-	lowercase: true,
+	uppercase: false,
+	lowercase: false,
 	numbers: true,
-	symbols: true,
+	symbols: false,
+	userString: 'Anton Ashurek'
 };
 
-// Пример использования функции
 const password = getPassword(generatePasswordParams);
 console.log(password);
 
