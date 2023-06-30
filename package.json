@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AntonOshurek/secure-random.git"
+    "url": "git+https://github.com/AntonOshurek/secure-crypto-random.git"
   },
   "keywords": [
     "secure",
@@ -20,9 +20,9 @@
   "author": "Anton Oshurek",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AntonOshurek/secure-random/issues",
+    "url": "https://github.com/AntonOshurek/secure-crypto-random/issues",
     "email": "oshurekweb@gmail.com"
   },
-  "homepage": "https://github.com/AntonOshurek/secure-random#readme",
+  "homepage": "https://github.com/AntonOshurek/secure-crypto-random#readme",
 	"bin": "./secure-crypto-random.js"
 }
