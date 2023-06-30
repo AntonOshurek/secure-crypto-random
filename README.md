@@ -1,110 +1,88 @@
-# crypto-random-password
+# SecureCryptoRandom Library
 
-crypto-random-password is a JavaScript library for generating secure random passwords. It utilizes cryptographic methods to ensure strong randomness and provides various options for customizing password generation.
-
-## Features
-
-- **Generation of random passwords with customizable length.**
-- **Support for uppercase letters, lowercase letters, numbers, and symbols in generated passwords.**
-- **Ability to include a user-defined string in the generated password.**
-- **Robust security using cryptographic algorithms for random number generation.**
+SecureCryptoRandom is a JavaScript library designed for generating secure random passwords. It is based on the cryptographic functions of the browser and provides a set of methods for creating passwords of varying lengths using different character sets.
 
 ## Installation
 
-### Install the crypto-random-password library using npm:
+You can install the SecureCryptoRandom library using npm:
 
 ```
-npm install crypto-random-password
+npm install secure-crypto-random
 ```
 
 ## Usage
 
-To use the library, import the desired functions and invoke them with appropriate parameters.
-
-### getRandomChar
-
-The `getRandomChar` function generates a random character based on the specified character case.
+To use the SecureCryptoRandom library, import the required methods and create an instance of the SecureCryptoRandom class:
 
 ```
-import { getRandomChar } from 'crypto-random-password';
+import { shuffleString, createWordsArrayFromString } from 'secure-crypto-random';
 
-const randomUppercaseChar = getRandomChar({ charCase: 'upper' });
-console.log(randomUppercaseChar); // Example output: 'R'
+class SecureCryptoRandom {
+  // ...class implementation...
+}
 
-const randomLowercaseChar = getRandomChar({ charCase: 'lower' });
-console.log(randomLowercaseChar); // Example output: 'j'
+const secureCryptoRandom = new SecureCryptoRandom();
 ```
 
-### getPassword
+## Methods
 
-The `getPassword` function generates a secure random password with customizable options.
+### cryptoRandom()
+
+Generates a random number between 0 and 1 using the cryptographic functions of the browser. Returns a number.
 
 ```
-import { getPassword } from 'crypto-random-password';
+const randomNumber = secureCryptoRandom.cryptoRandom();
+console.log(randomNumber); // Example output: 0.723456789
+```
 
-const passwordOptions = {
-passLength: 12,
+### getRandomInt()
+
+Generates a random integer between 0 and 9 using the cryptoRandom() method. Returns an integer.
+
+```
+const randomInt = secureCryptoRandom.getRandomInt();
+console.log(randomInt); // Example output: 5
+```
+
+### getRandomIndex(range: number)
+
+Generates a random index between 0 and range (exclusive). Throws an error if range is negative or zero. Returns an integer.
+
+const randomIndex = secureCryptoRandom.getRandomIndex(10);
+console.log(randomIndex); // Example output: 3
+
+```
+
+### getRandomChar(charCase: 'upper' | 'lower')
+Generates a random character either in uppercase or lowercase. Throws an error if charCase is not 'upper' or 'lower'. Returns a string.
+
+```
+
+const randomChar = secureCryptoRandom.getRandomChar('upper');
+console.log(randomChar); // Example output: 'C'
+
+```
+
+### createPassword(options: { passLength: number, uppercase: boolean, lowercase: boolean, numbers: boolean, symbols: boolean, userString?: string })
+Creates a random password based on the provided options. The passLength parameter specifies the length of the password. The uppercase, lowercase, numbers, and symbols parameters indicate whether to include characters from the respective character sets in the password. The userString parameter allows you to specify an additional string to be included in the password.
+
+```
+
+const password = secureCryptoRandom.createPassword({
+passLength: 15,
 uppercase: true,
 lowercase: true,
 numbers: true,
 symbols: true,
-userString: 'MySecret'
-};
-
-const password = getPassword(passwordOptions);
-console.log(password); // Example output: 'H4tF@#iU6?9mMySecret'
-```
-
-## API Reference
-
-### getRandomChar(options: { charCase: CharCase }): string
-
-Generates a random character based on the specified character case.
-
-- options: An object specifying the character case:
-- charCase: The character case ('upper' or 'lower').
-
-Returns: A randomly generated character.
-
-### getPassword(options: PasswordOptions): string
-
-Generates a secure random password based on the specified options.
-
-\*options: An object specifying the password generation options:
-
-- passLength: The length of the password (integer).
-- uppercase: Include uppercase letters in the password (boolean).
-- lowercase: Include lowercase letters in the password (boolean).
-- numbers: Include numbers in the password (boolean).
-- symbols: Include symbols in the password (boolean).
-- userString: A user-defined string to include in the password (string).
-- Returns: The generated random password.
-
-## Examples
-
-Here are a few examples demonstrating the usage of the crypto-random-password library:
+userString: 'JohnDoe'
+});
+console.log(password); // Example output: '8Y7a#b3N@9o1J4e6D2'
 
 ```
-import { getRandomChar, getPassword } from 'crypto-random-password';
 
-const randomUppercaseChar = getRandomChar({ charCase: 'upper' });
-console.log(randomUppercaseChar); // Example output: 'R'
-
-const passwordOptions = {
-passLength: 12,
-uppercase: true,
-lowercase: true,
-numbers: true,
-symbols: true,
-userString: 'MySecret'
-};
-
-const password = getPassword(passwordOptions);
-console.log(password); // Example output: 'H4tF@#iU6?9mMySecret'
+## Notes
+The cryptoRandom() method relies on the window.crypto.getRandomValues function provided by the browser. If the browser does not support this function, it falls back to using Math.random(), which is less secure.
+The createPassword() method calculates the available characters based on the provided options. It then generates random characters and inserts them into an array. If a userString is provided, it splits it into words, generates random indexes, and inserts the words at the specified positions in the password array.
+The shuffleString() function and createWordsArrayFromString() function are utility functions used internally by the library.
+That's it! You are now ready to use the SecureCryptoRandom library to generate secure random passwords in your JavaScript applications.
 ```
-
-## Conclusion
-
-With crypto-random-password, you can easily generate secure random passwords with customizable options. It offers strong randomness using cryptographic methods, ensuring the reliability and security of the generated passwords.
-
-We hope this documentation helps you effectively utilize the features of the crypto-random-password library. If you have any further questions or require assistance,
