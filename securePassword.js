@@ -7,7 +7,7 @@ const secureRandomInt = () => {
 	if (window.crypto && window.crypto.getRandomValues) {
 		return window.crypto.getRandomValues(new Uint32Array(1))[0] / (Math.pow(2, 32) - 1);
   } else {
-		console.error('[secureRandomInt] window.crypto - undefinde');
+		console.error('[secureRandomInt] window.crypto - undefined');
 		return Math.random();
   };
 };
@@ -16,8 +16,8 @@ const getRandomInt = () => {
 	return Math.floor(secureRandomInt() * 10)
 };
 
-const getRandomIndex = (length) => {
-	const randomIndex = Math.floor(secureRandomInt() * length);
+const getRandomIndex = (range) => {
+	const randomIndex = Math.floor(secureRandomInt() * range);
 	return randomIndex;
 };
 
@@ -34,6 +34,7 @@ const getRandomChar = ({ charCase }) => {
 
 const createWordsArrayFromString = (string) => {
 	let words = [];
+
 	if(string.length > 0) {
 		words = string.trim().split(/\s+/);
 
@@ -66,7 +67,7 @@ const getPassword = ({passLength, uppercase, lowercase, numbers, symbols, userSt
 		passSymbolsArray.push(shuffledChars[randomIndex]);
 	};
 
-	if(userString.length > 0) {
+	if(userString && userString.length > 0) {
 		const userWords = createWordsArrayFromString(userString);
 		const userWordsCount = userWords.length;
 		const indexForUserWord = [];
@@ -88,7 +89,7 @@ const getPassword = ({passLength, uppercase, lowercase, numbers, symbols, userSt
 };
 
 function shuffleString(str) {
-	const array = str.split(' ');
+	const array = str.split('');
 
 	for (let i = array.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
@@ -98,16 +99,13 @@ function shuffleString(str) {
 	return array.join("");
 };
 
-const generatePasswordParams = {
-	passLength: 20,
-	uppercase: false,
-	lowercase: false,
-	numbers: true,
-	symbols: false,
-	userString: 'Anton Ashurek'
-};
+// const generatePasswordParams = {
+// 	passLength: 20,
+// 	uppercase: false,
+// 	lowercase: false,
+// 	numbers: true,
+// 	symbols: true,
+// 	userString: 'Anton Ashurek'
+// };
 
-const password = getPassword(generatePasswordParams);
-console.log(password);
-
-// export { randomInt };
+export { randomInt, getPassword, getRandomChar, getRandomInt, secureRandomInt, getRandomIndex };
