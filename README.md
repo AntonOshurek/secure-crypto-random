@@ -72,14 +72,24 @@ Creates a random password based on the provided options. The passLength paramete
 ```
 
 const password = secureCryptoRandom.createPassword({
-passLength: 15,
-uppercase: true,
-lowercase: true,
-numbers: true,
-symbols: true,
-userString: 'JohnDoe'
+	passLength: 12,
+	uppercase: false,
+	lowercase: false,
+	numbers: true,
+	symbols: true,
+	userString: 'John Doe'
 });
-console.log(password); // Example output: '8Y7a#b3N@9o1J4e6D2'
+console.log(password); // Example output: '{Doe!.John)'
+
+
+const secondPassword = secureCryptoRandom.createPassword({
+	passLength: 20,
+	uppercase: true,
+	lowercase: true,
+	numbers: true,
+	symbols: true,
+});
+console.log(secondPassword); // Example output: '6M>;x2JWn*QW.;(z[mu['
 
 ```
 
