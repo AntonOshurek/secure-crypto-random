@@ -48,12 +48,14 @@ console.log(randomInt); // Example output: 5
 
 Generates a random index between 0 and range (exclusive). Throws an error if range is negative or zero. Returns an integer.
 
+```
 const randomIndex = secureCryptoRandom.getRandomIndex(10);
 console.log(randomIndex); // Example output: 3
 
 ```
 
 ### getRandomChar(charCase: 'upper' | 'lower')
+
 Generates a random character either in uppercase or lowercase. Throws an error if charCase is not 'upper' or 'lower'. Returns a string.
 
 ```
@@ -64,6 +66,7 @@ console.log(randomChar); // Example output: 'C'
 ```
 
 ### createPassword(options: { passLength: number, uppercase: boolean, lowercase: boolean, numbers: boolean, symbols: boolean, userString?: string })
+
 Creates a random password based on the provided options. The passLength parameter specifies the length of the password. The uppercase, lowercase, numbers, and symbols parameters indicate whether to include characters from the respective character sets in the password. The userString parameter allows you to specify an additional string to be included in the password.
 
 ```
@@ -81,8 +84,12 @@ console.log(password); // Example output: '8Y7a#b3N@9o1J4e6D2'
 ```
 
 ## Notes
+
 The cryptoRandom() method relies on the window.crypto.getRandomValues function provided by the browser. If the browser does not support this function, it falls back to using Math.random(), which is less secure.
 The createPassword() method calculates the available characters based on the provided options. It then generates random characters and inserts them into an array. If a userString is provided, it splits it into words, generates random indexes, and inserts the words at the specified positions in the password array.
 The shuffleString() function and createWordsArrayFromString() function are utility functions used internally by the library.
 That's it! You are now ready to use the SecureCryptoRandom library to generate secure random passwords in your JavaScript applications.
+
+```
+
 ```
