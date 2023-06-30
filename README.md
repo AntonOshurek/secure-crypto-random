@@ -102,3 +102,16 @@ console.log(secondPassword); // Example output: '6M>;x2JWn*QW.;(z[mu['
 - The shuffleString() function and createWordsArrayFromString() function are utility functions used internally by the library.
 
 That's it! You are now ready to use the SecureCryptoRandom library to generate secure random passwords in your JavaScript applications.
+
+## Keywords
+
+- #JavaScript
+- #library
+- #password
+- #generation
+- #security
+- #random
+- #cryptographic
+- #customization
+- #npm
+- #web development
