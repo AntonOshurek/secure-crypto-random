@@ -1,39 +1,36 @@
+// utils.js
+export function shuffleString(str: string): string;
+export function createWordsArrayFromString(str: string): string[];
+
+// secureCryptoRandom.js
 type CharCase = 'upper' | 'lower';
 
-declare const uppercaseChars: string;
-declare const lowercaseChars: string;
-declare const numberChars: string;
-declare const symbolChars: string;
+declare global {
+  interface Window {
+    crypto: {
+      getRandomValues(array: Uint32Array): Uint32Array;
+    };
+  }
+}
 
-declare const secureRandomInt: () => number;
-declare const getRandomInt: () => number;
-declare const getRandomIndex: (range: number) => number;
+class SecureCryptoRandom {
+  #uppercaseChars: string;
+  #lowercaseChars: string;
+  #numberChars: string;
+  #symbolChars: string;
 
-declare const getRandomChar: (options: { charCase: CharCase }) => string;
+  cryptoRandom(): number;
+  getRandomInt(): number;
+  getRandomIndex(range: number): number;
+  getRandomChar(charCase: CharCase): string;
+  createPassword(options: {
+    passLength: number;
+    uppercase: boolean;
+    lowercase: boolean;
+    numbers: boolean;
+    symbols: boolean;
+    userString?: string;
+  }): string;
+}
 
-declare const createWordsArrayFromString: (string: string) => string[];
-
-declare const getPassword: (options: {
-  passLength: number;
-  uppercase: boolean;
-  lowercase: boolean;
-  numbers: boolean;
-  symbols: boolean;
-  userString: string;
-}) => string;
-
-declare function shuffleString(str: string): string;
-
-export {
-  uppercaseChars,
-  lowercaseChars,
-  numberChars,
-  symbolChars,
-  secureRandomInt,
-  getRandomInt,
-  getRandomIndex,
-  getRandomChar,
-  createWordsArrayFromString,
-  getPassword,
-  shuffleString
-};
+export default SecureCryptoRandom;
