@@ -16,8 +16,8 @@ const getRandomInt = () => {
 	return Math.floor(secureRandomInt() * 10)
 };
 
-const getRandomIndex = (length) => {
-	const randomIndex = Math.floor(secureRandomInt() * length);
+const getRandomIndex = (range) => {
+	const randomIndex = Math.floor(secureRandomInt() * range);
 	return randomIndex;
 };
 
@@ -67,7 +67,7 @@ const getPassword = ({passLength, uppercase, lowercase, numbers, symbols, userSt
 		passSymbolsArray.push(shuffledChars[randomIndex]);
 	};
 
-	if(userString.length > 0) {
+	if(userString && userString.length > 0) {
 		const userWords = createWordsArrayFromString(userString);
 		const userWordsCount = userWords.length;
 		const indexForUserWord = [];
@@ -99,16 +99,13 @@ function shuffleString(str) {
 	return array.join("");
 };
 
-const generatePasswordParams = {
-	passLength: 20,
-	uppercase: false,
-	lowercase: false,
-	numbers: true,
-	symbols: true,
-	userString: 'Anton Ashurek'
-};
+// const generatePasswordParams = {
+// 	passLength: 20,
+// 	uppercase: false,
+// 	lowercase: false,
+// 	numbers: true,
+// 	symbols: true,
+// 	userString: 'Anton Ashurek'
+// };
 
-const password = getPassword(generatePasswordParams);
-console.log(password);
-
-// export { randomInt };
+export { randomInt, getPassword, getRandomChar, getRandomInt, secureRandomInt, getRandomIndex };
