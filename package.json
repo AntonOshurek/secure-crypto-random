@@ -1,6 +1,6 @@
 {
   "name": "secure-crypto-random",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "description": "lib for generation secure random int or string",
   "main": "secure-crypto-random.js",
   "type": "module",
@@ -13,9 +13,14 @@
   },
   "keywords": [
     "secure",
+    "crypto",
     "random",
-    "int",
-    "string"
+    "password",
+    "generation",
+    "library",
+    "custom",
+    "word",
+    "flexible"
   ],
   "author": "Anton Oshurek",
   "license": "ISC",
