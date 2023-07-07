@@ -1,9 +1,10 @@
 {
   "name": "secure-crypto-random",
-  "version": "1.0.02",
+  "version": "1.0.03",
   "description": "lib for generation secure random int or string",
   "main": "secure-crypto-random.js",
   "type": "module",
+	"types": "./index.d.ts",
   "scripts": {
     "start": "node secure-crypto-random.js"
   },
