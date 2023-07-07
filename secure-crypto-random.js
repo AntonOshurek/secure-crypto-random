@@ -84,6 +84,8 @@ class SecureCryptoRandom {
 
 const secureCryptoRandom = new SecureCryptoRandom();
 
+export default secureCryptoRandom;
+
 // const generatePasswordParams = {
 // 	passLength: 15,
 // 	uppercase: false,
@@ -92,5 +94,3 @@ const secureCryptoRandom = new SecureCryptoRandom();
 // 	symbols: true,
 // 	userString: 'Anton Ashurek'
 // };
-
-export default secureCryptoRandom;
