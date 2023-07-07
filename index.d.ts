@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-class SecureCryptoRandom {
+declare class SecureCryptoRandom {
   #uppercaseChars: string;
   #lowercaseChars: string;
   #numberChars: string;
