@@ -85,12 +85,3 @@ class SecureCryptoRandom {
 const secureCryptoRandom = new SecureCryptoRandom();
 
 export default secureCryptoRandom;
-
-// const generatePasswordParams = {
-// 	passLength: 15,
-// 	uppercase: false,
-// 	lowercase: false,
-// 	numbers: true,
-// 	symbols: true,
-// 	userString: 'Anton Ashurek'
-// };
