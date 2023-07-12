@@ -12,7 +12,7 @@ npm install secure-crypto-random
 
 ## Usage
 
-To use the SecureCryptoRandom library, import the required methods and create an instance of the SecureCryptoRandom class:
+To use the SecureCryptoRandom library, import the class instance and start use it:
 
 ```
 import secureCryptoRandom from 'secure-crypto-random';
