@@ -15,13 +15,19 @@ npm install secure-crypto-random
 To use the SecureCryptoRandom library, import the required methods and create an instance of the SecureCryptoRandom class:
 
 ```
-import { shuffleString, createWordsArrayFromString } from 'secure-crypto-random';
+import secureCryptoRandom from 'secure-crypto-random';
 
-class SecureCryptoRandom {
-  // ...class implementation...
-}
+	const generatePasswordParams = {
+		passLength: 25,
+		uppercase: true,
+		lowercase: true,
+		numbers: true,
+		symbols: true,
+		userString: Anton Oshurek,
+	};
 
-const secureCryptoRandom = new SecureCryptoRandom();
+	console.log(secureCryptoRandom.createPassword(generatePasswordParams));
+	//result = zAshurekLqij0Anton;LHwu
 ```
 
 ## Methods
