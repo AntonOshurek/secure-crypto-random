@@ -5,6 +5,13 @@ class SecureCryptoRandom {
 	#lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
 	#numberChars = "0123456789";
 	#symbolChars = "!@#$%^&*()-=_+[]{}|;:,.<>?";
+	#defaultGeneratePasswordOptions = {
+		passLength: 20,
+		uppercase: true,
+		lowercase: true,
+		numbers: true,
+		symbols: true,
+	};
 
 	cryptoRandom() {
 		if (window.crypto && window.crypto.getRandomValues) {
@@ -38,12 +45,29 @@ class SecureCryptoRandom {
 		};
 	};
 
-	createPassword({passLength, uppercase, lowercase, numbers, symbols, userString}) {
+	createPassword(options = this.#defaultGeneratePasswordOptions) {
+		const {
+			passLength,
+			uppercase,
+			lowercase,
+			numbers,
+			symbols,
+			userString,
+		} = options;
+
+		if(!passLength) {
+			throw new Error('passLength value cannot be missing');
+		};
+
 		let availableChars = "";
 		if (uppercase) availableChars += this.#uppercaseChars;
 		if (lowercase) availableChars += this.#lowercaseChars;
 		if (numbers) availableChars += this.#numberChars;
 		if (symbols) availableChars += this.#symbolChars;
+
+		if(Math.sign(availableChars.length) === -1 || Math.sign(availableChars.length) === 0) {
+			throw new Error('The parameters are not selected or there are no characters available to create a password. example : secureCryptoRandom.createPassword({passLength: 24, uppercase: true,})');
+		};
 
 		const fullPassLength = userString ? passLength - userString.length : passLength;
 

@@ -142,7 +142,34 @@ const secondPassword = secureCryptoRandom.createPassword({
 });
 console.log(secondPassword); // Example output: '6M>;x2JWn*QW.;(z[mu['
 
+
+//default properties without params object :
+// passLength: 20,
+// uppercase: true,
+// lowercase: true,
+// numbers: true,
+// symbols: true,
+
+console.log(secureCryptoRandom.createPassword());
+//result = )v*^e-HEdQ342Fsx_.Nh
+
 ```
+
+If the passLength property is missing or undefined, an error is thrown to indicate that the passLength value cannot be missing.
+
+The function checks the selected options and constructs a string of available characters based on the selected character sets: uppercase letters, lowercase letters, numbers, and symbols.
+
+If there are no available characters to create a password (either because no options are selected or no character sets are available), an error is thrown with a message indicating that the parameters are not selected or there are no characters available to create a password. An example usage is also provided in the error message.
+
+The function calculates the full password length by subtracting the length of the userString (if provided) from the passLength. If the resulting full password length is negative or zero, an error is thrown with a message indicating that the pass length cannot be negative or zero. The error message also includes the original passLength, the optional userString, and the resulting range of symbols after subtracting the userString length.
+
+The function generates an array of random symbols for the password by iterating fullPassLength times. Each iteration shuffles the available characters and selects a random symbol to push into the passSymbolsArray.
+
+If a userString is provided and its length is greater than zero, the function extracts words from the userString and creates an array of user words. It generates random indexes within the range of the full password length to determine where to insert each user word into the passSymbolsArray.
+
+Finally, the passSymbolsArray is joined into a string to form the password, which is then returned.
+
+In summary, the function allows the user to pass an options object with various parameters, but the passLength property is mandatory. If a property is missing in the options object, it will not be applied, but the passLength property must always be present.
 
 ## Notes
 
